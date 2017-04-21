@@ -9,6 +9,5 @@ Move Button - mikhog (opengameart.com)
 -- Sounds --
 Opening Music - Trevor Lentz (opengameart.org)
 Level Music - Martin Nillson (opengameart.org)
-Boss Music - SubspaceAudio (opengameart.org)
 Robot Sound - DaGameKnower (opengameart.org)
 Victory Jingles - Johan Brodd 2014 (opengameart.org)
