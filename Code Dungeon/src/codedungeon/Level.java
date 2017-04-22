@@ -377,7 +377,7 @@ public class Level implements Serializable
 			for(Tile t : e)
 				if(t instanceof Path)
 					System.out.print(((Path) t).getMaxSteps());
-				else if(t instanceof Pit)
+				else if(!t.isTraversable())
 					System.out.print("X");
 				else if(t instanceof Goal)
 					System.out.print("G");
@@ -385,7 +385,7 @@ public class Level implements Serializable
 					if(((Bridge) t).getMaxSteps() > 0)
 						System.out.print("B");
 					else
-						System.out.println("b");
+						System.out.print("b");
 			System.out.println();
 		}
 	}

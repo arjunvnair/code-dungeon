@@ -312,38 +312,6 @@ public class Main
 			    	sizeSettings.add(miniButton);
 			    	sizeSettings.add(mediumButton);
 			    	sizeSettings.add(massiveButton);
-					/*
-					Bug: Not suitable for GUI.
-										
-					NumberFormat longFormat = NumberFormat.getIntegerInstance();
-					NumberFormatter numberFormatter = new NumberFormatter(longFormat);
-					numberFormatter.setValueClass(Long.class);
-					numberFormatter.setAllowsInvalid(false);
-					numberFormatter.setMinimum(null);
-					numberFormatter.setMaximum(100l);
-					JFormattedTextField lengthField = new JFormattedTextField(numberFormatter);
-					lengthField.setBackground(Color.LIGHT_GRAY);
-			    	lengthField.setFont(new Font("Modern No. 20", Font.PLAIN, 100));
-			    	lengthField.setPreferredSize(new Dimension(dimMax.width/9, (dimMax.height - taskbarSize - copyright.getHeight())/3));
-			    	lengthField.setText("");
-			    	lengthField.setEnabled(true);
-			    	lengthField.setEditable(true);
-			    	JLabel x = new JLabel("x", SwingConstants.CENTER);
-			    	x.setBackground(Color.CYAN);
-			    	x.setFont(new Font("Modern No. 20", Font.PLAIN, 100));
-			    	x.setPreferredSize(new Dimension(dimMax.width/9, (dimMax.height - taskbarSize - copyright.getHeight())/3));	    	
-					JFormattedTextField heightField = new JFormattedTextField(numberFormatter);
-			    	heightField.setBackground(Color.LIGHT_GRAY);
-			    	heightField.setFont(new Font("Modern No. 20", Font.PLAIN, 100));
-			    	heightField.setPreferredSize(new Dimension(dimMax.width/9, (dimMax.height - taskbarSize - copyright.getHeight())/3));
-			    	heightField.setText("");
-			    	heightField.setEnabled(true);
-			    	heightField.setEditable(true);
-			    	sizeSettings.add(lengthField);
-			    	sizeSettings.add(x);
-			    	sizeSettings.add(heightField);
-			    	*/
-					
 			    	JButton generateLevelButton = new JButton("Generate Level");
 			    	generateLevelButton.setBackground(Color.CYAN);
 			    	generateLevelButton.setFont(new Font("Modern No. 20", Font.PLAIN, 75));
@@ -353,23 +321,6 @@ public class Main
 						@Override
 						public void actionPerformed(ActionEvent arg0) 
 						{
-							/*
-							Bug: Not suitable for GUI. 
-							
-							try
-							{
-								if(!(2 <= Integer.parseInt(lengthField.getText()) && Integer.parseInt(lengthField.getText()) <= 100) || !(2 <= Integer.parseInt(heightField.getText()) && Integer.parseInt(heightField.getText()) <= 100))
-								{
-									JOptionPane.showMessageDialog(mainScreen, "Pick dimension values between 2 and 100.");
-									return;
-								}
-							}
-							catch(NumberFormatException e)
-							{
-								JOptionPane.showMessageDialog(mainScreen, "Pick dimension values between 2 and 100.");
-								return;
-							}
-							*/
 							l = new Level(difficulty, length, height);
 							mainScreen.remove(levelGUI);
 							levelGUI = getLevelGUI();
@@ -667,9 +618,9 @@ public class Main
 													}
 													catch(ArrayIndexOutOfBoundsException ex)
 													{
-														JOptionPane.showMessageDialog(mainScreen, robot.getName() + " fell off the board!");
 														Main.addMove();
 														Main.updateMoves();
+														JOptionPane.showMessageDialog(mainScreen, robot.getName() + " fell off the board!");			
 													}
 												}
 												else if(r instanceof RepairBridge)
@@ -679,18 +630,55 @@ public class Main
 														robotNoiseClip.loop(1);
 														if(r.getDirection() == null)
 														{
+															Main.addMove();
+															Main.updateMoves();
+															tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+															tileLabel = (JLabel) tilePane.getComponent(0);
+															tilePane.remove(tileLabel);
+															tilePane.add(robotLabel, new Integer(1));
+															tilePane.add(tileLabel, new Integer(0));
 															JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a bridge in an unspecified direction!");
-															Main.addMove();
-															Main.updateMoves();
+															mainScreen.repaint();
+															mainScreen.revalidate();
 															return;
 														}
-														else if(!(r.getDirection().equals(Direction.UP) || r.getDirection().equals(Direction.DOWN) || r.getDirection().equals(Direction.LEFT) || r.getDirection().equals(Direction.RIGHT)))
+														else if(r.getDirection().equals(Direction.UP))
 														{
-															JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a bridge in an imaginary direction.");
+															robotLabel = robotTop;
+														}
+														else if(r.getDirection().equals(Direction.DOWN))
+														{
+															robotLabel = robotBottom;
+														}
+														else if(r.getDirection().equals(Direction.LEFT))
+														{
+															robotLabel = robotLeft;
+														}
+														else if(r.getDirection().equals(Direction.RIGHT))
+														{
+															robotLabel = robotRight;
+														}
+														else
+														{
 															Main.addMove();
 															Main.updateMoves();
+															tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+															tileLabel = (JLabel) tilePane.getComponent(0);
+															tilePane.remove(tileLabel);
+															tilePane.add(robotLabel, new Integer(1));
+															tilePane.add(tileLabel, new Integer(0));
+															JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a bridge in an imaginary direction.");
+															mainScreen.repaint();
+															mainScreen.revalidate();
 															return;
 														}
+														tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+														tileLabel = (JLabel) tilePane.getComponent(0);
+														tilePane.remove(tileLabel);
+														tilePane.add(robotLabel, new Integer(1));
+														tilePane.add(tileLabel, new Integer(0));
+														mainScreen.repaint();
+														mainScreen.revalidate();
 														Point p = r.getDirection().getTileMoveInDirection(j, i, 1);
 														if(l.getTileAt(p) instanceof Bridge)
 														{
@@ -699,24 +687,23 @@ public class Main
 														}
 														else
 														{
-															JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a nonexistent bridge " + r.getDirection().getName() + "!");
 															Main.addMove();
 															Main.updateMoves();
+															JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a nonexistent bridge " + r.getDirection().getName() + "!");
 														}
-														
 													}
 													catch(ArrayIndexOutOfBoundsException ex)
 													{
-														JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a nonexistent bridge " + r.getDirection().getName() + "!");
 														Main.addMove();
 														Main.updateMoves();
+														JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a nonexistent bridge " + r.getDirection().getName() + "!");
 													}
 												}
 												else
 												{
-													JOptionPane.showMessageDialog(mainScreen, robot.getName() + " did not produce a viable response!");
 													Main.addMove();
 													Main.updateMoves();
+													JOptionPane.showMessageDialog(mainScreen, robot.getName() + " did not produce a viable response!");
 												}
 											}
 										}
@@ -959,7 +946,7 @@ public class Main
 		{
 			JLabel tileImage = new JLabel();
 			tileImage = new JLabel(new ImageIcon(ImageIO.read(new File(filename))/*.getScaledInstance(tileImage.getWidth(), tileImage.getHeight(), Image.SCALE_SMOOTH)*/));
-			p.add(tileImage, new Integer(1));
+			p.add(tileImage, new Integer(0));
 			tileImage.setSize(32, 32);
 			p.setSize(32, 32);
 			p.setOpaque(false);
@@ -999,7 +986,7 @@ public class Main
 		JLayeredPane tP = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent((int) p.getY() * l.getBoard()[0].length + (int) p.getX())));
 		tP = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent((int) p.getY() * l.getBoard()[0].length + (int) p.getX())));
 		JLabel tL = (JLabel) tilePane.getComponent(0);
-		tP.remove(tL);
+		tP.remove(0);
 		try
 		{
 			tL = (JLabel) (getTileLayeredPane((int) p.getY(), (int) p.getX()).getComponent(0));
@@ -1008,7 +995,9 @@ public class Main
 		{
 			e.printStackTrace();
 		}
-		tP.add(tL, new Integer(1));
+		tP.add(tL, new Integer(0));
+		tP.repaint();
+		tP.revalidate();
 	}
 	protected static void addMove()
 	{

@@ -29,7 +29,15 @@ public class EasyBot extends Robot
 			d = Direction.UP;
 		else if(radar[1][2] && !d.equals(Direction.LEFT))
 			d = Direction.RIGHT;
-		else
+		else if(radar[2][1] && !d.equals(Direction.UP))
+			d = Direction.DOWN;
+		else if(radar[1][0])
+			d = Direction.LEFT;
+		else if(radar[0][1])
+			d = Direction.UP;
+		else if(radar[1][2])
+			d = Direction.RIGHT;
+		else if(radar[2][1])
 			d = Direction.DOWN;
 		return new Move(d);
 	}
