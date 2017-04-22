@@ -17,10 +17,6 @@ public abstract class Robot
 	public static void uploadRobots()
 	{
 		uploadedRobots = new ArrayList<Robot>();
-		uploadedRobots.add(new DaredevilBot());
-		uploadedRobots.add(new RandomBot());
-		uploadedRobots.add(new BuggyEasyBot());
-		uploadedRobots.add(new EasyBot());
 		//uploadedRobots.add(new YourRobotClassName());
 	}
 	public static List<Robot> getUploadedRobots()

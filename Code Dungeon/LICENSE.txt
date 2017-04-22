@@ -1,4 +1,4 @@
-Copyright (©) 2017 Arjun Nair
+© 2017 Arjun Nair
 
 Permission is hereby granted to any person obtaining a copy of this software and 
 associated documentation files (the "Software"), to download and use the Software
