@@ -1,3 +1,0 @@
-© 2017 Arjun Nair
-	
-The code and documentation in the robot package may be read, compiled, run, and modified for non-proprietary use; however, distributing or using this code and/or documentation for commercial purposes without the express permission of the author is not permitted.

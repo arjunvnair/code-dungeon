@@ -315,10 +315,7 @@ public class Level implements Serializable
 		if(generation == 0)
 			placeTile(p, new Goal());
 		for(Point pt : branchPts)
-			if(generation == 0)
-				generateBranchingPath(pt, generation + 2);
-			else
-				generateBranchingPath(pt, generation + 1);
+			generateBranchingPath(pt, 2);
 		if(generation == 0)
 		{
 			for(int i = 0; i < board.length; i++)

@@ -1,3 +1,0 @@
-© 2017 Arjun Nair
-	
-The code and documentation in this package may be read, compiled, and run for non-proprietary use; however, distributing, modifying, or using this code and/or documentation for commercial purposes without the express permission of the author is not permitted.

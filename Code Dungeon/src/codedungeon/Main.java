@@ -47,6 +47,7 @@ import javax.swing.OverlayLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
+import codedungeon.tutorial.TutorialBot;
 import robot.Robot;
 
 public class Main
@@ -73,6 +74,7 @@ public class Main
 	private static Thread backgroundAnimation;
 	private static JLabel title;
 	private static JLabel copyright;
+	private static JLabel tutorialText;
 	private static JLabel robotBottom = new JLabel(), robotTop = new JLabel(), robotLeft = new JLabel(), robotRight = new JLabel();
 	private static JLayeredPane tilePane;
 	private static JLabel tileLabel;
@@ -136,43 +138,7 @@ public class Main
 	    	copyright = new JLabel("© 2017 Arjun Nair ", SwingConstants.RIGHT);
 	    	copyright.setFont(new Font("Times New Roman", Font.BOLD, 40));
 	    	mainScreen.add(copyright, BorderLayout.SOUTH);
-	    	backgroundAnimation = new Thread()
-			{
-				public void run()
-				{
-					int count = 0;
-				    try
-				    {
-				    	while(!isInterrupted())
-					    {
-					    	count++;
-					    	JLabel robot;
-					    	robot = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/Blue right " + count + ".png")).getScaledInstance(dimMax.width * 3/10, dimMax.height * 19/20 - taskbarSize - title.getHeight() - copyright.getHeight(), Image.SCALE_DEFAULT)));
-					    	robot.setBounds(0, title.getHeight(), dimMax.width, dimMax.height - taskbarSize - copyright.getHeight());
-					    	robot.setOpaque(false);
-					    	mainScreen.add(robot, BorderLayout.CENTER);
-					    	robot.setLayout(new FlowLayout());
-						    if(count == 6)
-						    	count = 1;
-						    mainScreen.setSize(dimMax.width - 1, dimMax.height - 1 - taskbarSize);
-						    mainScreen.setSize(dimMax.width, dimMax.height - taskbarSize);
-						    Thread.sleep(55);
-						    mainScreen.remove(robot);
-					    }
-				    	mainScreen.getContentPane().removeAll();
-				    	mainScreen.repaint();
-				    	Thread.interrupted();
-				    }
-				    catch(InterruptedException e) 
-				    {
-				    	mainScreen.getContentPane().removeAll();
-				    	mainScreen.add(title, BorderLayout.NORTH);
-				    	mainScreen.add(copyright, BorderLayout.SOUTH);
-				    	mainScreen.repaint();
-				    }
-				    catch(IOException e) {}
-				}
-			};
+	    	initializeBackgroundAnimation();
 			backgroundAnimation.start();
 	    	JPanel menuButtons = new JPanel();
 	    	menuButtons.setLayout(new GridLayout(3, 1));
@@ -363,43 +329,7 @@ public class Main
 							mainScreen.add(menuButtons, BorderLayout.WEST);
 							mainScreen.revalidate();
 							mainScreen.repaint();
-							backgroundAnimation = new Thread()
-							{
-								public void run()
-								{
-									int count = 0;
-								    try
-								    {
-								    	while(!isInterrupted())
-									    {
-									    	count++;
-									    	JLabel robot;
-									    	robot = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/Blue right " + count + ".png")).getScaledInstance(dimMax.width * 3/10, dimMax.height * 19/20 - taskbarSize - title.getHeight() - copyright.getHeight(), Image.SCALE_DEFAULT)));
-									    	//robot.setBounds(0, title.getHeight(), dimMax.width, dimMax.height - taskbarSize - copyright.getHeight());
-									    	robot.setOpaque(false);
-									    	mainScreen.add(robot, BorderLayout.CENTER);
-									    	robot.setLayout(new FlowLayout());
-										    if(count == 6)
-										    	count = 1;
-										    mainScreen.setSize(dimMax.width - 1, dimMax.height - 1 - taskbarSize);
-										    mainScreen.setSize(dimMax.width, dimMax.height - taskbarSize);
-										    Thread.sleep(75);
-										    mainScreen.remove(robot);
-									    }
-								    	mainScreen.getContentPane().removeAll();
-								    	mainScreen.repaint();
-								    	Thread.interrupted();
-								    }
-								    catch(InterruptedException e) 
-								    {
-								    	mainScreen.getContentPane().removeAll();
-								    	mainScreen.add(title, BorderLayout.NORTH);
-								    	mainScreen.add(copyright, BorderLayout.SOUTH);
-								    	mainScreen.repaint();
-								    }
-								    catch(IOException e) {}
-								}
-							};
+							initializeBackgroundAnimation();
 							backgroundAnimation.start();
 						}
 			    	};
@@ -475,7 +405,6 @@ public class Main
 									playScreenButtons.setBackground(Color.GRAY);
 									playScreenButtons.setPreferredSize(new Dimension(dimMax.width/3, (dimMax.height - taskbarSize - copyright.getHeight())/3));
 									backgroundAnimation.interrupt();
-							    	mainScreen.getContentPane().removeAll();
 							    	mainScreen.repaint();
 									l = new Level("c:\\CodeDungeon\\" + fcButton.getText());
 									levelGUI = getLevelGUI();
@@ -726,43 +655,7 @@ public class Main
 											mainScreen.add(menuButtons, BorderLayout.WEST);
 											mainScreen.revalidate();
 											mainScreen.repaint();
-											backgroundAnimation = new Thread()
-											{
-												public void run()
-												{
-													int count = 0;
-												    try
-												    {
-												    	while(!isInterrupted())
-													    {
-													    	count++;
-													    	JLabel robot;
-													    	robot = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/Blue right " + count + ".png")).getScaledInstance(dimMax.width * 3/10, dimMax.height * 19/20 - taskbarSize - title.getHeight() - copyright.getHeight(), Image.SCALE_DEFAULT)));
-													    	robot.setBounds(0, title.getHeight(), dimMax.width, dimMax.height - taskbarSize - copyright.getHeight());
-													    	robot.setOpaque(false);
-													    	mainScreen.add(robot, BorderLayout.CENTER);
-													    	robot.setLayout(new FlowLayout());
-														    if(count == 6)
-														    	count = 1;
-														    mainScreen.setSize(dimMax.width - 1, dimMax.height - 1 - taskbarSize);
-														    mainScreen.setSize(dimMax.width, dimMax.height - taskbarSize);
-														    Thread.sleep(75);
-														    mainScreen.remove(robot);
-													    }
-												    	mainScreen.getContentPane().removeAll();
-												    	mainScreen.repaint();
-												    	Thread.interrupted();
-												    }
-												    catch(InterruptedException e) 
-												    {
-												    	mainScreen.getContentPane().removeAll();
-												    	mainScreen.add(title, BorderLayout.NORTH);
-												    	mainScreen.add(copyright, BorderLayout.SOUTH);
-												    	mainScreen.repaint();
-												    }
-												    catch(IOException e) {}
-												}
-											};
+											initializeBackgroundAnimation();
 											backgroundAnimation.start();
 										}
 							    	};
@@ -840,22 +733,291 @@ public class Main
 				}
 	    	};
 	    	robotTesterButton.addActionListener(robotTesterButtonListener);
-	    	JButton helpButton = new JButton("Help");
-	    	helpButton.setBackground(Color.CYAN);
-	    	helpButton.setFont(new Font("Modern No. 20", Font.PLAIN, 100));
-	    	helpButton.setPreferredSize(new Dimension(dimMax.width/3, (dimMax.height - taskbarSize - copyright.getHeight())/3));
-	    	ActionListener helpButtonListener = new ActionListener()
+	    	JButton tutorialButton = new JButton("Tutorial");
+	    	tutorialButton.setBackground(Color.CYAN);
+	    	tutorialButton.setFont(new Font("Modern No. 20", Font.PLAIN, 100));
+	    	tutorialButton.setPreferredSize(new Dimension(dimMax.width/3, (dimMax.height - taskbarSize - copyright.getHeight())/3));
+	    	ActionListener tutorialButtonListener = new ActionListener()
 	    	{
 				@Override
 				public void actionPerformed(ActionEvent arg0) 
 				{
-					JOptionPane.showMessageDialog(mainScreen, "Check src/robot/Robot.java for instructions in the comments.");
+					if((new File("src/codedungeon/tutorial/tutorial.ser").exists()))
+					{
+						openingMusic.interrupt();
+						levelMusic.start();
+						movesMade = 0;
+						robot = new TutorialBot();
+						mainScreen.remove(menuButtons);
+						backgroundAnimation.interrupt();
+						JPanel playScreenButtons = new JPanel();
+						playScreenButtons.setLayout(new GridLayout(4, 1));
+						playScreenButtons.setBackground(Color.GRAY);
+						playScreenButtons.setPreferredSize(new Dimension(dimMax.width/3, (dimMax.height - taskbarSize - copyright.getHeight())/3));
+						backgroundAnimation.interrupt();
+				    	mainScreen.repaint();
+						l = new Level("src/codedungeon/tutorial/tutorial.ser");
+						levelGUI = getLevelGUI();
+						try
+						{
+							robotBottom = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-bottom.png"))));
+							robotTop = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-top.png"))));
+							robotLeft = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-left.png"))));
+							robotRight = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-right.png"))));
+						}
+						catch(IOException e) {}
+						robotBottom.setOpaque(false);
+						robotTop.setOpaque(false);
+						robotLeft.setOpaque(false);
+						robotRight.setOpaque(false);
+						i = l.getBoard().length/2;
+						j = l.getBoard()[0].length/2;
+						tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+						tileLabel = (JLabel) tilePane.getComponent(0);
+						tilePane.remove(tileLabel);
+						robotLabel = robotBottom;
+						tilePane.add(robotLabel, new Integer(1));
+						tilePane.add(tileLabel, new Integer(0));
+						tutorialText = new JLabel("<html>In Code Dungeon, your task is to program a robot class in the src\\codedungeon\\robot folder which can solve auto-generated puzzles with limited visibility. This tutorial will guide you through execution and provide some handy code snippets. Press the play button to have TutorialBot make its first move.</html>");
+						tutorialText.setBackground(Color.WHITE);
+						tutorialText.setFont(new Font("Modern No. 20", Font.PLAIN, 20));
+				    	tutorialText.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+						moves = new JLabel(movesMade + "/" + l.getMinMoves() + " Moves", SwingConstants.CENTER);
+						moves.setFont(new Font("Modern No. 20", Font.PLAIN, 80));
+				    	moves.setBackground(Color.CYAN);
+				    	moves.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+				    	JButton moveMaker = new JButton();
+						try 
+						{
+							moveMaker = new JButton(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/play.png"))));
+						} 
+						catch (IOException e) {}
+						ActionListener moveMakerListener = new ActionListener()
+						{
+							@Override
+							public void actionPerformed(ActionEvent e)
+							{
+								boolean[][] radar = new boolean[3][3];
+								for(int i1 = 0; i1 < radar.length; i1++)
+								{
+									for(int j1 = 0; j1 < radar[0].length; j1++)
+									{
+										if(0 <= i - 1 + i1 && i - 1 + i1 < l.getBoard().length && 0 <= j - 1 + j1 && j - 1 + j1 < l.getBoard()[0].length)
+											radar[i1][j1] = l.getBoard()[i - 1 + i1][j - 1 + j1].isTraversable();
+										else
+											radar[i1][j1] = false;
+									}
+								}
+								r = null;
+								try
+								{
+									r = robot.getResponse(radar);
+								}
+								catch(Exception ex)
+								{
+									if(l.getBoard()[i][j].allowsExit())
+									{
+										JOptionPane.showMessageDialog(mainScreen, robot.getName() + " threw an exception!");
+										addMove();
+										updateMoves();
+									}
+								}
+								if(r != null && 0 <= i && i < l.getBoard().length && 0 <= j && j < l.getBoard()[0].length && l.getBoard()[i][j].allowsExit())
+								{
+									robotNoiseClip.loop(1);
+									tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+									tilePane.remove(robotLabel);
+									tilePane.repaint();
+									tilePane.revalidate();
+									mainScreen.repaint();
+									mainScreen.revalidate();
+									if(r instanceof Move)
+									{
+										try
+										{
+											if(r.getDirection() == null)
+											{
+												JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to move in an unspecified direction!");
+												Main.addMove();
+												Main.updateMoves();
+												return;
+											}
+											else if(r.getDirection().equals(Direction.UP))
+											{
+												l.getBoard()[i][j].getExited(r.getDirection());
+												i--;
+												robotLabel = robotTop;
+											}
+											else if(r.getDirection().equals(Direction.DOWN))
+											{
+												l.getBoard()[i][j].getExited(r.getDirection());
+												i++;
+												robotLabel = robotBottom;
+											}
+											else if(r.getDirection().equals(Direction.LEFT))
+											{
+												l.getBoard()[i][j].getExited(r.getDirection());
+												j--;
+												robotLabel = robotLeft;
+											}
+											else if(r.getDirection().equals(Direction.RIGHT))
+											{
+												l.getBoard()[i][j].getExited(r.getDirection());
+												j++;
+												robotLabel = robotRight;
+											}
+											else
+											{
+												JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to move in an imaginary direction.");
+												Main.addMove();
+												Main.updateMoves();
+												return;
+											}
+											if(l.getBoard()[i][j].isTraversable())
+											{
+												tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+												tileLabel = (JLabel) tilePane.getComponent(0);
+												tilePane.remove(tileLabel);
+												tilePane.add(robotLabel, new Integer(1));
+												tilePane.add(tileLabel, new Integer(0));
+												mainScreen.repaint();
+												mainScreen.revalidate();
+											}
+											l.getBoard()[i][j].getSteppedOn();
+										}
+										catch(ArrayIndexOutOfBoundsException ex)
+										{
+											Main.addMove();
+											Main.updateMoves();
+											JOptionPane.showMessageDialog(mainScreen, robot.getName() + " fell off the board!");			
+										}
+									}
+									else if(r instanceof RepairBridge)
+									{
+										try
+										{
+											robotNoiseClip.loop(1);
+											if(r.getDirection() == null)
+											{
+												Main.addMove();
+												Main.updateMoves();
+												tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+												tileLabel = (JLabel) tilePane.getComponent(0);
+												tilePane.remove(tileLabel);
+												tilePane.add(robotLabel, new Integer(1));
+												tilePane.add(tileLabel, new Integer(0));
+												JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a bridge in an unspecified direction!");
+												mainScreen.repaint();
+												mainScreen.revalidate();
+												return;
+											}
+											else if(r.getDirection().equals(Direction.UP))
+											{
+												robotLabel = robotTop;
+											}
+											else if(r.getDirection().equals(Direction.DOWN))
+											{
+												robotLabel = robotBottom;
+											}
+											else if(r.getDirection().equals(Direction.LEFT))
+											{
+												robotLabel = robotLeft;
+											}
+											else if(r.getDirection().equals(Direction.RIGHT))
+											{
+												robotLabel = robotRight;
+											}
+											else
+											{
+												Main.addMove();
+												Main.updateMoves();
+												tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+												tileLabel = (JLabel) tilePane.getComponent(0);
+												tilePane.remove(tileLabel);
+												tilePane.add(robotLabel, new Integer(1));
+												tilePane.add(tileLabel, new Integer(0));
+												JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a bridge in an imaginary direction.");
+												mainScreen.repaint();
+												mainScreen.revalidate();
+												return;
+											}
+											tilePane = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent(i * l.getBoard()[0].length + j)));
+											tileLabel = (JLabel) tilePane.getComponent(0);
+											tilePane.remove(tileLabel);
+											tilePane.add(robotLabel, new Integer(1));
+											tilePane.add(tileLabel, new Integer(0));
+											mainScreen.repaint();
+											mainScreen.revalidate();
+											Point p = r.getDirection().getTileMoveInDirection(j, i, 1);
+											if(l.getTileAt(p) instanceof Bridge)
+											{
+												((Bridge) l.getTileAt(p)).repairBridge();
+												Main.refreshTileAt(p);
+											}
+											else
+											{
+												Main.addMove();
+												Main.updateMoves();
+												JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a nonexistent bridge " + r.getDirection().getName() + "!");
+											}
+										}
+										catch(ArrayIndexOutOfBoundsException ex)
+										{
+											Main.addMove();
+											Main.updateMoves();
+											JOptionPane.showMessageDialog(mainScreen, robot.getName() + " tried to repair a nonexistent bridge " + r.getDirection().getName() + "!");
+										}
+									}
+									else
+									{
+										Main.addMove();
+										Main.updateMoves();
+										JOptionPane.showMessageDialog(mainScreen, robot.getName() + " did not produce a viable response!");
+									}
+								}
+							}
+						};
+						moveMaker.addActionListener(moveMakerListener);
+						JButton backToMenuButton = new JButton("Back to Menu");
+				    	backToMenuButton.setBackground(Color.CYAN);
+				    	backToMenuButton.setFont(new Font("Modern No. 20", Font.PLAIN, 80));
+				    	backToMenuButton.setPreferredSize(new Dimension(dimMax.width/3, (dimMax.height - taskbarSize - copyright.getHeight())/3));
+				    	ActionListener backToMenuButtonListener = new ActionListener()
+				    	{
+							@Override
+							public void actionPerformed(ActionEvent arg0) 
+							{
+								interruptMusic();
+								initializeMusicThreads();
+								openingMusic.start();
+								mainScreen.remove(playScreenButtons);
+								mainScreen.remove(levelGUI);
+								mainScreen.add(menuButtons, BorderLayout.WEST);
+								initializeBackgroundAnimation();
+								backgroundAnimation.start();
+								mainScreen.revalidate();
+								mainScreen.repaint();
+							}
+				    	};
+				    	backToMenuButton.addActionListener(backToMenuButtonListener);
+						playScreenButtons.add(tutorialText);
+						playScreenButtons.add(moves);
+						playScreenButtons.add(moveMaker);
+						playScreenButtons.add(backToMenuButton);
+						playScreenButtons.setBackground(Color.CYAN);
+						mainScreen.add(playScreenButtons, BorderLayout.WEST);
+						mainScreen.add(levelGUI, BorderLayout.CENTER);
+						mainScreen.revalidate();
+						mainScreen.repaint();
+					}
+					else
+						JOptionPane.showMessageDialog(mainScreen, "src/codedungeon/tutorial has been corrupted. Redownload the folder and try again!");
 				}
 	    	};
-	    	helpButton.addActionListener(helpButtonListener);
+	    	tutorialButton.addActionListener(tutorialButtonListener);
 	    	menuButtons.add(levelBuilderButton);
 	    	menuButtons.add(robotTesterButton);
-	    	menuButtons.add(helpButton);
+	    	menuButtons.add(tutorialButton);
 	    	mainScreen.add(menuButtons, BorderLayout.WEST);
 			mainScreen.setVisible(true);
 			openingMusic.start();
@@ -981,6 +1143,10 @@ public class Main
 	{
 		return l;
 	}
+	public static void setTutorialText(String s)
+	{
+		tutorialText.setText(s);
+	}
 	protected static void refreshTileAt(Point p)
 	{
 		JLayeredPane tP = ((JLayeredPane) (((JPanel) (levelGUI.getComponent(0))).getComponent((int) p.getY() * l.getBoard()[0].length + (int) p.getX())));
@@ -1089,6 +1255,46 @@ public class Main
 		catch(LineUnavailableException e1) {} 
 		catch (IOException e1) {}
 		catch(UnsupportedAudioFileException e1) {}
+	}
+	protected static void initializeBackgroundAnimation()
+	{
+		backgroundAnimation = new Thread()
+		{
+			public void run()
+			{
+				int count = 0;
+		    	JLabel robot = new JLabel();
+			    try
+			    {
+			    	while(!isInterrupted())
+				    {
+				    	count++;
+				    	robot = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/Blue right " + count + ".png")).getScaledInstance(dimMax.width * 3/10, dimMax.height * 19/20 - taskbarSize - title.getHeight() - copyright.getHeight(), Image.SCALE_DEFAULT)));
+				    	robot.setBounds(0, title.getHeight(), dimMax.width, dimMax.height - taskbarSize - copyright.getHeight());
+				    	robot.setOpaque(false);
+				    	mainScreen.add(robot, BorderLayout.CENTER);
+				    	robot.setLayout(new FlowLayout());
+					    if(count == 6)
+					    	count = 1;
+					    mainScreen.setSize(dimMax.width - 1, dimMax.height - 1 - taskbarSize);
+					    mainScreen.setSize(dimMax.width, dimMax.height - taskbarSize);
+					    Thread.sleep(75);
+					    mainScreen.remove(robot);
+				    }
+			    	mainScreen.remove(robot);
+			    	mainScreen.repaint();
+			    	mainScreen.validate();
+			    	Thread.interrupted();
+			    }
+			    catch(InterruptedException e) 
+			    {
+			    	mainScreen.remove(robot);
+			    	mainScreen.repaint();
+			    	mainScreen.validate();
+			    }
+			    catch(IOException e) {}
+			}
+		};
 	}
 	protected static void interruptMusic()
 	{
