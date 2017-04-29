@@ -47,26 +47,23 @@ import javax.swing.OverlayLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
+import codedungeon.responses.Move;
+import codedungeon.responses.RepairBridge;
 import codedungeon.tutorial.TutorialBot;
 import robot.Robot;
 
 public class Main
-{
-	//Level Generation  
+{ 
 	private static String difficulty;
 	private static int length;
 	private static int height;
 	private static Level l;
-	
-	//Level Execution
 	private static Robot robot;
 	private static int i;
 	private static int j;
 	private static Response r;
 	private static JLabel moves;
 	private static int movesMade;
-	
-	//Graphics
 	private static Dimension dimMax = Toolkit.getDefaultToolkit().getScreenSize();
 	private static int taskbarSize;
 	private static JFrame mainScreen;
@@ -79,8 +76,6 @@ public class Main
 	private static JLayeredPane tilePane;
 	private static JLabel tileLabel;
 	private static JLabel robotLabel;
-	
-	//Sound
 	private static BooleanControl mute;
 	private static Clip robotNoiseClip;
 	private static Clip victoryJingleEfficientClip;

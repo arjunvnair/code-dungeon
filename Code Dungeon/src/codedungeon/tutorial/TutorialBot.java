@@ -8,9 +8,9 @@ package codedungeon.tutorial;
 import robot.Robot;
 import codedungeon.Direction;
 import codedungeon.Main;
-import codedungeon.Move;
-import codedungeon.RepairBridge;
 import codedungeon.Response;
+import codedungeon.responses.Move;
+import codedungeon.responses.RepairBridge;
 
 public class TutorialBot extends Robot
 

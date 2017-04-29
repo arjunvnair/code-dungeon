@@ -20,7 +20,8 @@ public class Level implements Serializable
 	private Tile board[][];
 	private int minMoves; //May not necessarily be the minimum number of moves for ALL cases; some levels on higher difficulties may coincidentally generate shorter paths to victory.
 	private String difficulty;
-	public Level(String d, int height, int length)
+	
+	protected Level(String d, int height, int length)
 	{
 		difficulty = d;
 		try
@@ -66,6 +67,7 @@ public class Level implements Serializable
 		}
 		initializeMinMoves();
 	}
+	
 	protected Level(String filename)
 	{
 		FileInputStream fin = null;
@@ -113,7 +115,8 @@ public class Level implements Serializable
 
 		}
 	}
-	public void serialize(String name) 
+	
+	protected void serialize(String name) 
 	{
 		FileOutputStream fout = null;
 		ObjectOutputStream oos = null;
@@ -156,18 +159,22 @@ public class Level implements Serializable
 			}
 		}
 	}
+	
 	protected Tile[][] getBoard()
 	{
 		return board;
 	}
+	
 	protected int getMinMoves()
 	{
 		return minMoves;
 	}
+	
 	protected String getDifficulty()
 	{
 		return difficulty;
 	}
+	
 	protected Tile getTileAt(Point p)
 	{
 		try
@@ -179,6 +186,7 @@ public class Level implements Serializable
 			return new Pit();
 		}
 	}
+	
 	private int howManyTraversableAdjacent(Point p)
 	{
 		int count = 0;
@@ -192,6 +200,7 @@ public class Level implements Serializable
 			count++;
 		return count;
 	}
+	
 	private boolean canBePlaced(Point p)
 	{
 		try
@@ -205,6 +214,7 @@ public class Level implements Serializable
 		}
 		return howManyTraversableAdjacent(p) <= 1;
 	}
+	
 	protected int howManyCanBePlacedAround(Point p)
 	{
 		int count = 0;
@@ -218,21 +228,14 @@ public class Level implements Serializable
 			count++;
 		return count;
 	}
-	@Deprecated
-	protected boolean areTraversableTilesAdjacent(int x, int y, int x1, int y1)
-	{
-		if(x < 0 || y < 0 || x > board[0].length - 1 || y >  board.length - 1 || x1 < 0 || y1 < 0 || x1 > board[0].length - 1 || y1 >  board.length - 1)
-			return false;
-		if(Math.sqrt((double) Math.pow(x - x1, 2) + (double) Math.pow(y - y1, 2)) == 1 && board[y1][x1].isTraversable())
-			return true;
-		return false;
-	}
+	
 	private void placeTile(Point p, Tile t)
 	{
 		int x = (int) p.getX();
 		int y = (int) p.getY();
 		board[y][x] = t;
 	}
+	
 	private Point findAdjacentLegalTile(Point p)
 	{
 		int x = (int) p.getX();
@@ -244,6 +247,7 @@ public class Level implements Serializable
 		}
 		return p;
 	}
+	
 	private boolean containsBranching()
 	{
 		int count = 0;
@@ -255,6 +259,7 @@ public class Level implements Serializable
 			return true;
 		return false;
 	}
+	
 	private boolean containsBridges()
 	{
 		int count = 0;
@@ -266,6 +271,7 @@ public class Level implements Serializable
 			return true;
 		return false;
 	}
+	
 	private void generatePath(Point start)
 	{
 		Point p = start;
@@ -286,6 +292,7 @@ public class Level implements Serializable
 		}
 		placeTile(p, new Goal());
 	}
+	
 	private void generateBranchingPath(Point start, int generation)
 	{
 		Point p = new Point((int) start.getX(), (int) start.getY());
@@ -333,6 +340,7 @@ public class Level implements Serializable
 			((Path) getTileAt(p)).setMaxSteps(howManyTraversableAdjacent(p) - 1);
 		}		
 	}
+	
 	private void placeBridges()
 	{
 		for(int i = 0; i < board.length; i++)
@@ -354,6 +362,7 @@ public class Level implements Serializable
 			}
 		}
 	}
+	
 	protected void initializeMinMoves()
 	{
 		minMoves = 0;
@@ -362,10 +371,12 @@ public class Level implements Serializable
 				if((t instanceof Path && ((Path) t).getMaxSteps() == 0) || (t instanceof Bridge && ((Bridge) t).getMaxSteps() == 0))
 					minMoves++;
 	}
+	
 	protected void addMinMove()
 	{
 		minMoves++;
 	}
+	
 	@Deprecated
 	protected void printLevel()
 	{

@@ -10,11 +10,13 @@ import javax.swing.JOptionPane;
 public class Pit extends Tile 
 {
 	private static final long serialVersionUID = 1L;
+	
 	protected Pit()
 	{
 		traversable = false;
 		exitable = false;
 	}
+	
 	protected boolean getSteppedOn() 
 	{
 		Main.addMove();

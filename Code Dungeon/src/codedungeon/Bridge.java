@@ -13,6 +13,7 @@ public class Bridge extends Tile
 	private int maxSteps;
 	private int howManySteps;
 	private boolean hasLeftRightOrientation;
+	
 	protected Bridge()
 	{
 		maxSteps = 0;
@@ -20,6 +21,7 @@ public class Bridge extends Tile
 		traversable = true;
 		exitable = true;
 	}
+	
 	protected Bridge(boolean branch, boolean leftRightOrientation)
 	{
 		if(branch)
@@ -31,6 +33,7 @@ public class Bridge extends Tile
 		exitable = true;
 		hasLeftRightOrientation = leftRightOrientation;
 	}
+	
 	protected Bridge(int ms)
 	{
 		maxSteps = ms;
@@ -38,6 +41,7 @@ public class Bridge extends Tile
 		traversable = true;
 		exitable = true;
 	}
+	
 	protected boolean getSteppedOn()
 	{
 		if(traversable)
@@ -58,6 +62,7 @@ public class Bridge extends Tile
 		}
 		return super.getSteppedOn();
 	}
+	
 	protected void getExited(Direction d) 
 	{
 		traversable = false;
@@ -71,10 +76,12 @@ public class Bridge extends Tile
 			JOptionPane.showMessageDialog(Main.getMainScreen(), Main.getRobot().getName() + " just fell off a bridge at coordinates (" + (int) Main.getRobotPosition().getY() + "," + (int) Main.getRobotPosition().getX() + ") while traveling " + Main.getDirection().getName() + ".");
 		}
 	}
+	
 	protected int getMaxSteps()
 	{
 		return maxSteps;
 	}
+	
 	protected void repairBridge()
 	{
 		howManySteps++;

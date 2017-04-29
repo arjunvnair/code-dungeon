@@ -10,11 +10,13 @@ import javax.swing.JOptionPane;
 public class Goal extends Tile 
 {
 	private static final long serialVersionUID = 1L;
+	
 	protected Goal()
 	{
 		traversable = true;
 		exitable = false;
 	}
+	
 	protected boolean getSteppedOn() 
 	{
 		Main.addMove();
