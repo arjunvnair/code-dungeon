@@ -1,0 +1,3 @@
+$ cat .gitattributes
+Code Dungeon/doc/* linguist-documentation
+createImage.pl linguist-vendored
