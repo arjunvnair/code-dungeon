@@ -1,0 +1,4 @@
+lines (3 sloc)  84 Bytes
+$ cat .gitattributes
+Code Dungeon/doc/* linguist-documentation
+Code Dungeon/createImage.pl linguist-vendored
