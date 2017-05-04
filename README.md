@@ -65,4 +65,4 @@ return new RepairBridge(Direction d) //Repairs bridge in desired direction if po
 ```
 ## How To Play
 
-Download all the files, import them into a Java IDE, and run the ```public static void main(String[] args)``` method in the ```Code Dungeon/src/codedungeon/Main.java``` file. In order to insert your robot into the game, place the ```.java``` file in the ```Code Dungeon/src/robot``` folder and add ```uploadedRobots.add(new YourRobotClassName());``` to the ```uploadRobots()``` method in the ```Code Dungeon/src/robot/Robot.java``` file.
+Download all the files, import them into a Java IDE, and run the ```public static void main(String[] args)``` method in the ```Code Dungeon/codedungeon/Main.java``` file. In order to insert your robot into the game, place the ```.java``` file in the ```Code Dungeon/robot``` folder and add ```uploadedRobots.add(new YourRobotClassName());``` to the ```uploadRobots()``` method in the ```Code Dungeon/robot/Robot.java``` file.
