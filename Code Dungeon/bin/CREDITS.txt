@@ -1,0 +1,13 @@
+-- Graphics --
+
+Dungeon Tiles - Buch (http://blog-buch.rhcloud.com)
+Robot Sprite - PlatForge's Hannah Cohan
+Robot Animation Frames - Crown Joseph (www.crownjoseph.com)
+Backwards and Forwards Buttons - deivsonf10 (opengameart.org)
+Move Button - mikhog (opengameart.com)
+
+-- Sounds --
+Opening Music - Trevor Lentz (opengameart.org)
+Level Music - Martin Nillson (opengameart.org)
+Robot Sound - DaGameKnower (opengameart.org)
+Victory Jingles - Johan Brodd 2014 (opengameart.org)

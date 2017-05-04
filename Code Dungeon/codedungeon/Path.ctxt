@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Path()
+comment1.params=ms
+comment1.target=Path(int)
+comment2.params=
+comment2.target=int\ getMaxSteps()
+comment3.params=
+comment3.target=boolean\ getSteppedOn()
+comment4.params=n
+comment4.target=void\ setMaxSteps(int)
+comment5.params=
+comment5.target=void\ addMaxStep()
+numComments=6

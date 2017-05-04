@@ -1,0 +1,24 @@
+#BlueJ package file
+objectbench.height=76
+objectbench.width=658
+package.editor.height=400
+package.editor.width=560
+package.editor.x=12
+package.editor.y=20
+package.numDependencies=0
+package.numTargets=2
+package.showExtends=true
+package.showUses=true
+project.charset=windows-1252
+target1.height=62
+target1.name=robot
+target1.type=PackageTarget
+target1.width=80
+target1.x=200
+target1.y=10
+target2.height=62
+target2.name=codedungeon
+target2.type=PackageTarget
+target2.width=100
+target2.x=90
+target2.y=10

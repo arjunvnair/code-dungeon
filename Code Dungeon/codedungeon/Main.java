@@ -90,7 +90,7 @@ public class Main
 		Robot.uploadRobots();
 		mainScreen = new JFrame();
 		mainScreen.setTitle("Code Dungeon");
-		mainScreen.setIconImage(new ImageIcon("src/codedungeon/art/logo.png").getImage());
+		mainScreen.setIconImage(new ImageIcon("codedungeon/art/logo.png").getImage());
 		WindowAdapter adapter = new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent arg0) 
@@ -407,10 +407,10 @@ public class Main
 										levelGUI = getLevelGUI();
 										try
 										{
-											robotBottom = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-bottom.png"))));
-											robotTop = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-top.png"))));
-											robotLeft = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-left.png"))));
-											robotRight = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-right.png"))));
+											robotBottom = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/robot-bottom.png"))));
+											robotTop = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/robot-top.png"))));
+											robotLeft = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/robot-left.png"))));
+											robotRight = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/robot-right.png"))));
 										}
 										catch(IOException e) {}
 										robotBottom.setOpaque(false);
@@ -446,7 +446,7 @@ public class Main
 								    	JButton moveMaker = new JButton();
 										try 
 										{
-											moveMaker = new JButton(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/play.png"))));
+											moveMaker = new JButton(new ImageIcon(ImageIO.read(new File("codedungeon/art/play.png"))));
 										} 
 										catch (IOException e) {}
 										ActionListener moveMakerListener = new ActionListener()
@@ -676,7 +676,7 @@ public class Main
 				    		JPanel forwardbackwardButtons = new JPanel();
 					    	forwardbackwardButtons.setLayout(new GridLayout(1, 2));
 					    	forwardbackwardButtons.setBackground(Color.GRAY);
-					    	JButton forwardButton = new JButton(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/FRENTE.png")).getScaledInstance(dimMax.width/6, (dimMax.height - taskbarSize - copyright.getHeight())/3, Image.SCALE_SMOOTH)));
+					    	JButton forwardButton = new JButton(new ImageIcon(ImageIO.read(new File("codedungeon/art/FRENTE.png")).getScaledInstance(dimMax.width/6, (dimMax.height - taskbarSize - copyright.getHeight())/3, Image.SCALE_SMOOTH)));
 					    	forwardButton.setBackground(Color.BLUE);
 					    	forwardButton.setPreferredSize(new Dimension(dimMax.width/6, (dimMax.height - taskbarSize - copyright.getHeight())/3));
 					    	ActionListener forwardButtonListener = new ActionListener()
@@ -691,7 +691,7 @@ public class Main
 								}
 					    	};
 					    	forwardButton.addActionListener(forwardButtonListener);
-					    	JButton backwardButton = new JButton(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/Back.png")).getScaledInstance(dimMax.width/6, (dimMax.height - taskbarSize - copyright.getHeight())/3, Image.SCALE_SMOOTH)));
+					    	JButton backwardButton = new JButton(new ImageIcon(ImageIO.read(new File("codedungeon/art/Back.png")).getScaledInstance(dimMax.width/6, (dimMax.height - taskbarSize - copyright.getHeight())/3, Image.SCALE_SMOOTH)));
 					    	backwardButton.setBackground(Color.BLUE);
 					    	backwardButton.setPreferredSize(new Dimension(dimMax.width/6, (dimMax.height - taskbarSize - copyright.getHeight())/3));
 					    	ActionListener backwardButtonListener = new ActionListener()
@@ -731,7 +731,7 @@ public class Main
 				    	catch(IOException e) {}
 			    	}
 			    	else
-			    		JOptionPane.showMessageDialog(mainScreen, "Add a robot to the uploadedRobots() method in the src/robot/Robot.java file before trying to test a robot!");
+			    		JOptionPane.showMessageDialog(mainScreen, "Add a robot to the uploadedRobots() method in the robot/Robot.java file before trying to test a robot!");
 				}
 	    	};
 	    	robotTesterButton.addActionListener(robotTesterButtonListener);
@@ -744,7 +744,7 @@ public class Main
 				@Override
 				public void actionPerformed(ActionEvent arg0) 
 				{
-					if((new File("src/codedungeon/tutorial/tutorial.ser").exists()))
+					if((new File("codedungeon/tutorial/tutorial.ser").exists()))
 					{
 						openingMusic.interrupt();
 						levelMusic.start();
@@ -758,14 +758,14 @@ public class Main
 						playScreenButtons.setPreferredSize(new Dimension(dimMax.width/3, (dimMax.height - taskbarSize - copyright.getHeight())/3));
 						backgroundAnimation.interrupt();
 				    	mainScreen.repaint();
-						l = new Level("src/codedungeon/tutorial/tutorial.ser");
+						l = new Level("codedungeon/tutorial/tutorial.ser");
 						levelGUI = getLevelGUI();
 						try
 						{
-							robotBottom = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-bottom.png"))));
-							robotTop = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-top.png"))));
-							robotLeft = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-left.png"))));
-							robotRight = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/robot-right.png"))));
+							robotBottom = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/robot-bottom.png"))));
+							robotTop = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/robot-top.png"))));
+							robotLeft = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/robot-left.png"))));
+							robotRight = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/robot-right.png"))));
 						}
 						catch(IOException e) {}
 						robotBottom.setOpaque(false);
@@ -791,7 +791,7 @@ public class Main
 				    	JButton moveMaker = new JButton();
 						try 
 						{
-							moveMaker = new JButton(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/play.png"))));
+							moveMaker = new JButton(new ImageIcon(ImageIO.read(new File("codedungeon/art/play.png"))));
 						} 
 						catch (IOException e) {}
 						ActionListener moveMakerListener = new ActionListener()
@@ -1013,7 +1013,7 @@ public class Main
 						mainScreen.repaint();
 					}
 					else
-						JOptionPane.showMessageDialog(mainScreen, "src/codedungeon/tutorial has been corrupted. Redownload the folder and try again!");
+						JOptionPane.showMessageDialog(mainScreen, "codedungeon/tutorial has been corrupted. Redownload the folder and try again!");
 				}
 	    	};
 	    	tutorialButton.addActionListener(tutorialButtonListener);
@@ -1060,7 +1060,7 @@ public class Main
 		JLayeredPane p = new JLayeredPane();
 		OverlayLayout o = new OverlayLayout(p);
 		p.setLayout(o);
-		String filename = "src/codedungeon/art/";
+		String filename = "codedungeon/art/";
 		Tile[][] board = l.getBoard();
 		try
 		{
@@ -1183,7 +1183,7 @@ public class Main
 			{
 				try
 				{
-					File sky = new File("src/codedungeon/sounds/This Sky of Mine.wav");
+					File sky = new File("codedungeon/sounds/This Sky of Mine.wav");
 					AudioInputStream skyInputStream = AudioSystem.getAudioInputStream(sky);
 					Clip skyClip = AudioSystem.getClip();
 					skyClip.open(skyInputStream);
@@ -1204,7 +1204,7 @@ public class Main
 			{
 				try
 				{
-					File level = new File("src/codedungeon/sounds/beep_beep_beep_level_music.wav");
+					File level = new File("codedungeon/sounds/beep_beep_beep_level_music.wav");
 					AudioInputStream levelInputStream = AudioSystem.getAudioInputStream(level);
 					Clip levelClip = AudioSystem.getClip();
 					levelClip.open(levelInputStream);
@@ -1225,7 +1225,7 @@ public class Main
 	{
 		try
 		{
-			File robotNoise = new File("src/codedungeon/sounds/robot.wav");
+			File robotNoise = new File("codedungeon/sounds/robot.wav");
 			AudioInputStream robotNoiseInputStream = AudioSystem.getAudioInputStream(robotNoise);
 			robotNoiseClip = AudioSystem.getClip();
 			robotNoiseClip.open(robotNoiseInputStream);
@@ -1236,7 +1236,7 @@ public class Main
 		catch(UnsupportedAudioFileException e1) {}
 		try
 		{
-			File victoryJingleInefficient = new File("src/codedungeon/sounds/inefficient-victory-jingle.wav");
+			File victoryJingleInefficient = new File("codedungeon/sounds/inefficient-victory-jingle.wav");
 			AudioInputStream victoryJingleInefficientInputStream = AudioSystem.getAudioInputStream(victoryJingleInefficient);
 			victoryJingleInefficientClip = AudioSystem.getClip();
 			victoryJingleInefficientClip.open(victoryJingleInefficientInputStream);
@@ -1247,7 +1247,7 @@ public class Main
 		catch(UnsupportedAudioFileException e1) {}
 		try
 		{
-			File victoryJingleEfficient = new File("src/codedungeon/sounds/efficient-victory-jingle.wav");
+			File victoryJingleEfficient = new File("codedungeon/sounds/efficient-victory-jingle.wav");
 			AudioInputStream victoryJingleEfficientInputStream = AudioSystem.getAudioInputStream(victoryJingleEfficient);
 			victoryJingleEfficientClip = AudioSystem.getClip();
 			victoryJingleEfficientClip.open(victoryJingleEfficientInputStream);
@@ -1271,7 +1271,7 @@ public class Main
 			    	while(!isInterrupted())
 				    {
 				    	count++;
-				    	robot = new JLabel(new ImageIcon(ImageIO.read(new File("src/codedungeon/art/Blue right " + count + ".png")).getScaledInstance(dimMax.width * 3/10, dimMax.height * 19/20 - taskbarSize - title.getHeight() - copyright.getHeight(), Image.SCALE_DEFAULT)));
+				    	robot = new JLabel(new ImageIcon(ImageIO.read(new File("codedungeon/art/Blue right " + count + ".png")).getScaledInstance(dimMax.width * 3/10, dimMax.height * 19/20 - taskbarSize - title.getHeight() - copyright.getHeight(), Image.SCALE_DEFAULT)));
 				    	robot.setBounds(0, title.getHeight(), dimMax.width, dimMax.height - taskbarSize - copyright.getHeight());
 				    	robot.setOpaque(false);
 				    	mainScreen.add(robot, BorderLayout.CENTER);

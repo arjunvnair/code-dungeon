@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=boolean\ isTraversable()
+comment1.params=
+comment1.target=boolean\ getSteppedOn()
+comment2.params=d
+comment2.target=void\ getExited(Direction)
+comment3.params=
+comment3.target=boolean\ allowsExit()
+numComments=4

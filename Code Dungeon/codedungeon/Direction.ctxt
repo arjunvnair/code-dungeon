@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=p
+comment0.target=Direction(int)
+comment0.text=\r\n\ Constructs\ a\ direction\ according\ to\ the\ pointer\ value\ that\ corresponds\ to\ the\ compass\ below.<br>\r\n\ -\ \ 1\ \ -<br>\r\n\ \ \ \r\n\ 2\ \ X\ \ 0<br>\r\n\ \r\n\ -\ \ 3\ \ -\r\n\ @param\ p\ a\ pointer\ from\ 0\ to\ 3\ indicating\ direction\r\n
+comment1.params=
+comment1.target=Direction\ random()
+comment2.params=x\ y\ units
+comment2.target=java.awt.Point\ getTileMoveInDirection(int,\ int,\ int)
+comment3.params=d
+comment3.target=boolean\ equals(Direction)
+comment3.text=\r\n\ Compares\ each\ direction's\ pointers\ to\ determine\ directional\ equality.\r\n\ @param\ d\ a\ direction\ which\ <b>this</b>\ will\ compare\ to.\r\n
+comment4.params=
+comment4.target=java.lang.String\ getName()
+numComments=5

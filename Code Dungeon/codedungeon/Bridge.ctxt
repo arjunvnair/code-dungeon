@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Bridge()
+comment1.params=branch\ leftRightOrientation
+comment1.target=Bridge(boolean,\ boolean)
+comment2.params=ms
+comment2.target=Bridge(int)
+comment3.params=
+comment3.target=boolean\ getSteppedOn()
+comment4.params=d
+comment4.target=void\ getExited(Direction)
+comment5.params=
+comment5.target=int\ getMaxSteps()
+comment6.params=
+comment6.target=void\ repairBridge()
+numComments=7
